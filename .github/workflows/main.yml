@@ -1,0 +1,74 @@
+name: Deploy App to ESIG Production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up SSH agent and add private key
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_ESIG }}
+
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-keyscan ${{ secrets.SERVER_IP_ESIG }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to server
+        env:
+          SERVER_USER: ${{ secrets.SERVER_USER_ESIG }}
+          SERVER_IP: ${{ secrets.SERVER_IP_ESIG }}
+          SITE_NAME: ${{ secrets.SITE_NAME_ESIG }}
+        run: |
+          set -euxo pipefail
+
+          APP_NAME=frappetheme
+          BRANCH=master
+          BENCH_PATH=/home/${SERVER_USER}/esig-erp
+
+          echo "Connecting to $SERVER_USER@$SERVER_IP..."
+
+          ssh -o StrictHostKeyChecking=no "$SERVER_USER@$SERVER_IP" bash << EOF
+            set -euxo pipefail
+
+            APP_NAME="$APP_NAME"
+            BRANCH="$BRANCH"
+            BENCH_PATH="$BENCH_PATH"
+            SITE_NAME="$SITE_NAME"
+
+            echo "📦 Deploying app '\$APP_NAME' on branch '\$BRANCH' to site '\$SITE_NAME' at '\$BENCH_PATH'"
+
+            cd "\$BENCH_PATH"
+
+            if [ -d "apps/\$APP_NAME" ]; then
+              echo "✅ App '\$APP_NAME' exists. Pulling latest changes..."
+              cd "apps/\$APP_NAME"
+              git fetch upstream
+              git checkout "\$BRANCH"
+              git pull upstream "\$BRANCH"
+              cd "\$BENCH_PATH"
+
+              bench build --app "\$APP_NAME"
+              bench --site "\$SITE_NAME" migrate
+              bench --site "\$SITE_NAME" clear-cache
+            else
+              echo "📦 App '\$APP_NAME' not found. Cloning and installing..."
+              bench get-app --branch "\$BRANCH" git@github.com:Guba-Technology/sugartheme.git
+              bench build --app "\$APP_NAME"
+              bench --site "\$SITE_NAME" install-app "\$APP_NAME"
+              bench --site "\$SITE_NAME" migrate
+              bench --site "\$SITE_NAME" clear-cache
+            fi
+
+            echo "✅ Deployment completed successfully!"
+          EOF
