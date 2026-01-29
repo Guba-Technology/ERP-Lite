@@ -1,3 +1,45 @@
+.body {
+  background: white !important;
+}
+
+.page-content-wrapper {
+  background: white;
+}
+
+#page-login {
+  background: white;
+  height: 100%;
+}
+
+.for-login .page-card .page-card-body .field-icon {
+  top: 11px !important;
+}
+
+.help-box {
+  color: red !important;
+}
+
+.ace_editor {
+  background: white !important;
+}
+
+
+.ace_gutter-layer {
+  background: white !important;
+}
+.section-title{
+  display: none !important;
+}
+
+.navbar-expand-lg {
+  display: none;
+}
+
+#navbar-breadcrumbs li.disabled a {
+  color: black !important;
+}
+
+
 .navbar {
   background: #8DC63F !important;
   height: 70px;
@@ -20,6 +62,48 @@
   padding-bottom: 1rem !important;
 }
 
+.navbar-brand>img {
+  display: none;
+}
+
+.for-login .page-card .page-card-body .password-field .toggle-password {
+  top: 11px !important;
+}
+
+/* Hide Show / Hide text completely */
+.toggle-password.eye-replaced::before {
+  content: "" !important;
+  display: none !important;
+}
+
+.toggle-password.eye-replaced {
+  font-size: 0 !important;
+  color: transparent !important;
+  position: relative;
+}
+
+/* Eye wrapper */
+.eye-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* SVG styling */
+.eye-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: #6c757d;
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+
+
 @media (max-width: 1290px) {
   .navbar .navbar-brand {
     margin-left: -3%;
@@ -37,6 +121,7 @@
     max-height: 40px !important;
   }
 }
+
 @media (max-width: 770px) {
   .navbar .navbar-brand {
     /* margin-left: -24%; */
@@ -99,14 +184,15 @@ input[type="password"] {
 .for-login .page-card-head {
   /* width: 25rem; */
   /* padding: max(10vh, 30px) 0 14px 0px; */
+  margin-top: 100px;
   border-radius: 80px 0px 0px 0px !important;
   /* margin-top: 30px; */
 }
 
 .for-login .page-card {
   border-radius: 0px 0px 80px 0px !important;
-  border-top: none !important;
-  background-color: #F3F3F3 !important;
+  border: none !important;
+  background-color: white !important;
 }
 
 
@@ -235,9 +321,10 @@ input[type="password"] {
   text-align: center;
 }
 
+/* 
 .dropdown-help {
   display: none !important;
-}
+} */
 
 .search-bar .awesomplete input {
   background-color: white;
@@ -446,9 +533,9 @@ input[type=checkbox] {
   color: var(--text-color);
 }
 
-.title-logins {
-  color: #8DC63F;
-}
+/* .title-logins { */
+/* color: #8DC63F; */
+/* } */
 
 .page-card-actions .btn {
   padding: 16px 8px !important;
@@ -469,3 +556,5 @@ input[type=checkbox] {
 .footer-list-main {
   overflow-x: hidden;
 }
+
+/* Press */
