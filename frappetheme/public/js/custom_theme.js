@@ -80,78 +80,56 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ===============================
        PASSWORD EYE ICON (two SVG toggle)
     ================================ */
-    function injectEyeIcons() {
-        document.querySelectorAll(".toggle-password").forEach(toggle => {
-            if (toggle.dataset.eyeInjected) return;
-            toggle.dataset.eyeInjected = "true";
+     function eye(open) {
+    return open
+        ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+           </svg>`
+        : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+           </svg>`;
+}
 
-            toggle.classList.add("eye-replaced");
+    function replaceTextWithIcons() {
+        document.querySelectorAll(".toggle-password").forEach(el => {
+            const txt = el.textContent.trim().toLowerCase();
 
-            // Remove any existing icons
-            const oldIcons = toggle.querySelectorAll(".eye-icon");
-            oldIcons.forEach(e => e.remove());
-
-            const input = document.querySelector(toggle.getAttribute("toggle"));
-            if (!input) return;
-
-            // Eye icon (password hidden by default)
-            const eyeOn = document.createElement("span");
-            eyeOn.className = "eye-icon eye-on";
-            eyeOn.innerHTML = `
-                <svg viewBox="0 0 24 24">
-                    <path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-            `;
-            toggle.appendChild(eyeOn);
-
-            // Eye-off icon (password visible)
-            const eyeOff = document.createElement("span");
-            eyeOff.className = "eye-icon eye-off";
-            eyeOff.innerHTML = `
-                <svg viewBox="0 0 24 24">
-                    <path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                    <line x1="3" y1="21" x2="21" y2="3" stroke="#6c757d" stroke-width="2"/>
-                </svg>
-            `;
-            toggle.appendChild(eyeOff);
-
-            // Set initial display based on input type
-            if (input.type === "password") {
-                eyeOn.style.display = "inline-flex";
-                eyeOff.style.display = "none";
-            } else {
-                eyeOn.style.display = "none";
-                eyeOff.style.display = "inline-flex";
-            }
+            if (txt === "show") el.innerHTML = eye(false);
+            if (txt === "hide") el.innerHTML = eye(true);
         });
     }
+    // Initial run
+    replaceTextWithIcons();
+    // SPA-safe
+    new MutationObserver(replaceTextWithIcons)
+        .observe(document.body, { childList: true, subtree: true });
 
-    injectEyeIcons();
-    new MutationObserver(injectEyeIcons).observe(document.body, { childList: true, subtree: true });
+    // injectEyeIcons();
+    // new MutationObserver(injectEyeIcons).observe(document.body, { childList: true, subtree: true });
 
     // Toggle eye icons on click
-    document.addEventListener("click", function (e) {
-        const toggle = e.target.closest(".toggle-password");
-        if (!toggle) return;
+    // document.addEventListener("click", function (e) {
+    //     const toggle = e.target.closest(".toggle-password");
+    //     if (!toggle) return;
 
-        const input = document.querySelector(toggle.getAttribute("toggle"));
-        if (!input) return;
+    //     const input = document.querySelector(toggle.getAttribute("toggle"));
+    //     if (!input) return;
 
-        const eyeOn = toggle.querySelector(".eye-on");
-        const eyeOff = toggle.querySelector(".eye-off");
+    //     const eyeOn = toggle.querySelector(".eye-on");
+    //     const eyeOff = toggle.querySelector(".eye-off");
 
-        if (input.type === "password") {
-            input.type = "text";
-            eyeOn.style.display = "none";
-            eyeOff.style.display = "inline-flex";
-        } else {
-            input.type = "password";
-            eyeOn.style.display = "inline-flex";
-            eyeOff.style.display = "none";
-        }
-    });
+    //     if (input.type === "password") {
+    //         input.type = "text";
+    //         eyeOn.style.display = "none";
+    //         eyeOff.style.display = "inline-flex";
+    //     } else {
+    //         input.type = "password";
+    //         eyeOn.style.display = "inline-flex";
+    //         eyeOff.style.display = "none";
+    //     }
+    // });
 
 });
 
