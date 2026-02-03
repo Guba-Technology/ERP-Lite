@@ -557,4 +557,14 @@ input[type=checkbox] {
   overflow-x: hidden;
 }
 
+.toggle-password {
+    font-size: 0 !important;   /* hides Show / Hide text */
+    cursor: pointer;
+}
+
+.toggle-password svg {
+    width: 18px;
+    height: 18px;
+    stroke: #007DC5;
+}
 /* Press */
