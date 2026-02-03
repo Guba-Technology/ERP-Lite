@@ -82,86 +82,76 @@ document.addEventListener("DOMContentLoaded", function () {
     ================================ */
     function injectEyeIcons() {
         document.querySelectorAll(".toggle-password").forEach(toggle => {
-            if (toggle.dataset.eyeInjected) return;
-            toggle.dataset.eyeInjected = "true";
 
-            toggle.classList.add("eye-replaced");
-
-            // Remove any existing icons
-            const oldIcons = toggle.querySelectorAll(".eye-icon");
-            oldIcons.forEach(e => e.remove());
+            if (toggle._eyeInjected) return;
+            toggle._eyeInjected = true;
 
             const input = document.querySelector(toggle.getAttribute("toggle"));
             if (!input) return;
 
-            // Eye icon (password hidden by default)
+            const passwordField = toggle.closest(".password-field");
+            if (!passwordField) return;
+
+            toggle.classList.add("eye-replaced");
+            toggle.textContent = "";
+
+            // 👁️ Eye ON
             const eyeOn = document.createElement("span");
             eyeOn.className = "eye-icon eye-on";
             eyeOn.innerHTML = `
-                <svg viewBox="0 0 24 24">
-                    <path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-            `;
-            toggle.appendChild(eyeOn);
+            <svg viewBox="0 0 24 24">
+                <path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z"/>
+                <circle cx="12" cy="12" r="3"/>
+            </svg>
+        `;
 
-            // Eye-off icon (password visible)
-            const eyeOff = document.createElement("span");
-            eyeOff.className = "eye-icon eye-off";
-            eyeOff.innerHTML = `
+            // Check if eye-off already exists
+            let eyeOff = passwordField.querySelector(".eye-off");
+            if (!eyeOff) {
+                eyeOff = document.createElement("span");
+                eyeOff.className = "eye-icon eye-off";
+                eyeOff.innerHTML = `
                 <svg viewBox="0 0 24 24">
                     <path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z"/>
                     <circle cx="12" cy="12" r="3"/>
                     <line x1="3" y1="21" x2="21" y2="3" stroke="#6c757d" stroke-width="2"/>
                 </svg>
             `;
-            toggle.appendChild(eyeOff);
-
-            // Set initial display based on input type
-            if (input.type === "password") {
-                eyeOn.style.display = "inline-flex";
-                eyeOff.style.display = "none";
+                eyeOff.style.display = "none"; // hide initially
+                passwordField.appendChild(eyeOff);
             } else {
-                eyeOn.style.display = "none";
-                eyeOff.style.display = "inline-flex";
+                eyeOff.style.display = "none"; // ensure hidden initially
             }
+
+            toggle.appendChild(eyeOn);
+
+            // 🔁 Click toggle logic
+            const toggleEyes = () => {
+                if (input.type === "password") {
+                    input.type = "text";        // show password
+                    eyeOn.style.display = "none";
+                    eyeOff.style.display = "inline-flex";
+                } else {
+                    input.type = "password";    // hide password
+                    eyeOn.style.display = "inline-flex";
+                    eyeOff.style.display = "none";
+                }
+            };
+
+            toggle.addEventListener("click", toggleEyes);
+            eyeOff.addEventListener("click", toggleEyes);
         });
     }
 
+    // Initial injection
     injectEyeIcons();
-    new MutationObserver(injectEyeIcons).observe(document.body, { childList: true, subtree: true });
 
-    // Toggle eye icons on click
-    document.addEventListener("click", function (e) {
-        const toggle = e.target.closest(".toggle-password");
-        if (!toggle) return;
-
-        const input = document.querySelector(toggle.getAttribute("toggle"));
-        if (!input) return;
-
-        const eyeOn = toggle.querySelector(".eye-on");
-        const eyeOff = toggle.querySelector(".eye-off");
-
-        if (input.type === "password") {
-            input.type = "text";
-            eyeOn.style.display = "none";
-            eyeOff.style.display = "inline-flex";
-        } else {
-            input.type = "password";
-            eyeOn.style.display = "inline-flex";
-            eyeOff.style.display = "none";
-        }
+    // Observe DOM for new password fields
+    new MutationObserver(injectEyeIcons).observe(document.body, {
+        childList: true,
+        subtree: true
     });
 
 });
 
-///Press
-{/* <template>
-  <img
-    src="/logo.png"
-    alt="Logo"
-    width="118"
-    height="118"
-  />
-</template> */}
 
