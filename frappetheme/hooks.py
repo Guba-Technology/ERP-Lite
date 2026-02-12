@@ -178,7 +178,7 @@ web_include_js = "/assets/frappetheme/js/custom_theme.js"
 # 	"frappe.desk.doctype.event.event.get_events": "frappetheme.event.get_events"
 # }
 website_context = {
-    "favicon": "/assets/frappetheme/images/logos.png",
+    "favicon": "/assets/frappetheme/images/logo.png",
     "splash_image": "/assets/frappetheme/images/logos.png"
 }
 override_whitelisted_methods = {
