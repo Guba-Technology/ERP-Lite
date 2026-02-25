@@ -14,7 +14,9 @@
 .for-login .page-card .page-card-body .field-icon {
   top: 11px !important;
 }
-
+.for-login .page-card-head {
+    margin-top: 10 !important;
+}
 /* .help-box {
   color: red !important;
 } */
