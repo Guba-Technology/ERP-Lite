@@ -17,15 +17,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 pagehome.append(Nav);
             }
 
-            const section = document.querySelector(".main-section");
-            if (section && !section.querySelector(".footer-list-main")) {
-                const main = document.createElement("div");
-                main.className = "footer-list-main";
-                main.innerHTML = `
-                    <img src="/assets/frappetheme/images/linel.png" class="img-rotated-line"/>
-                    <img src="/assets/frappetheme/images/liner.png" class="img-rotated-line-right"/>`;
-                section.append(main);
-            }
+            // const section = document.querySelector(".main-section");
+            // if (section && !section.querySelector(".footer-list-main")) {
+            //     const main = document.createElement("div");
+            //     main.className = "footer-list-main";
+            //     main.innerHTML = `
+            //         <div class="footer-list">
+            //             <a href="https://www.ettelerp.com" target="_blank">Ettel ERP</a>
+            //             <a href="https://www.ettelerp.com/privacy-policy" target="_blank">Privacy Policy</a>
+            //             <a href="https://www.ettelerp.com/terms-of-service" target="_blank">Terms of Service</a>
+            //         </div>`;                
+            //     section.append(main);
+            // }
         });
 
         observer.observe(document.body, { childList: true, subtree: true });
@@ -66,12 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const navbar = document.querySelector(
             "nav.navbar.navbar-light.navbar-expand-lg"
         )
-        const loginnav = document.querySelector(".navbar-expand-lg>.container")
-        if (navbar) navbar.remove()
-        if (loginnav) loginnav.remove()
-        if (loginnav) {
-            loginnav.style.display = "none"
-        }
+        // const loginnav = document.querySelector(".navbar-expand-lg>.container")
+        // if (navbar) navbar.remove()
+        // if (loginnav) loginnav.remove()
+        // if (loginnav) {
+        //     loginnav.style.display = "none"
+        // }
     }
 
 

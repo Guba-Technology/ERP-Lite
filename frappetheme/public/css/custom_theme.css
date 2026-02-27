@@ -5,6 +5,68 @@
 .page-content-wrapper {
   background: white;
 }
+.sidebar-item-icon {
+    display: inline-block;
+    line-height: 0;
+}
+
+.sidebar-item-icon svg {
+    width: 20px;              /* your icon size */
+    height: 20px;
+    padding: 4px;             /* controls circle thickness */
+    background-color: #8FC441;
+    border-radius: 50%;
+    stroke: white !important;
+    fill: #8FC441 !important;
+    box-sizing: content-box;  /* keeps circle tight */
+}
+.sidebar-item-icon .icon-md {
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    background-color: #8FC441 !important;
+    border-radius: 50%;
+    box-sizing: content-box;
+   --icon-stroke: white !important;
+   --icon-fill: #8FC441 !important;
+    /* color: #8FC441 !important;        THIS is important */
+}
+
+.sidebar-item-icon .icon-md path,
+.sidebar-item-icon .icon-md use {
+    stroke: white !important;
+    
+}
+.icon.icon-sm{
+    width: 16px;
+    height: 16px;
+    padding: 4px;
+    border-radius: 50%;
+    --icon-stroke: #8FC441 !important;
+    box-sizing: content-box;
+    color: #8FC441 !important;        /* THIS is important */
+}
+.es-icon.es-line.icon-sm{
+    width: 16px;
+    height: 16px;
+    padding: 4px;
+    background-color: #8FC441;
+    border-radius: 50%;
+    box-sizing: content-box;
+     --icon-stroke: white !important;   
+    color: white !important;        /* THIS is important */
+}
+.search-icon.icon-sm {
+    stroke: white !important;
+    background-color: #F3F3F3 !important;
+    }
+.null-state{
+    background-color: #F3F3F3 !important;
+    --icon-stroke: #8FC441 !important ;
+}
+.es-icon.icon-sm {
+    stroke: white !important;
+    }
 
 #page-login {
   background: white;
@@ -64,9 +126,9 @@
   padding-bottom: 1rem !important;
 }
 
-.navbar-brand>img {
+/* .navbar-brand>img {
   display: none;
-}
+} */
 
 .for-login .page-card .page-card-body .password-field .toggle-password {
   top: 11px !important;
@@ -403,19 +465,27 @@ input[type="password"] {
 }
 
 .widget.links-widget-box .widget-head .widget-label .widget-title {
-  color: #0072BC !important;
+  color: white !important;
 }
 
 .shortcut-widget-box .widget-head .widget-label .widget-title {
   color: white;
 }
 
-.widget .widget-head .widget-label .widget-title:hamover {
-  color: black !important;
+.widget .widget-head .widget-label .widget-title:hover {
+  color: white !important;
 }
-
+.link-content.llipsis.disabled-link{
+  color: white !important;
+}
+.link-item.ellipsis.disabled-link.disabled-link {
+  color: white !important;
+}
+.link-item.ellipsis.onboard-spotlight.disabled-link {
+  color: white !important;
+}
 [data-page-route=Workspaces] .codex-editor svg {
-  --icon-stroke: #0072BC !important;
+  --icon-stroke: #8FC441 !important;
 }
 
 
@@ -548,7 +618,8 @@ input[type=checkbox] {
 }
 
 .desk-sidebar .standard-sidebar-item.selected {
-  background-color: #0072BC !important;
+  background-color: #8FC441 !important;
+  color: white !important;
 }
 
 /* .navbar-expand-lg>.container {
@@ -557,6 +628,7 @@ input[type=checkbox] {
 
 .footer-list-main {
   overflow-x: hidden;
+  
 }
 
 .toggle-password {
