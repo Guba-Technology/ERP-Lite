@@ -64,8 +64,8 @@ function moveInvalidLoginText() {
 
     // If button contains 'Invalid Login'
     if (loginBtn.innerText.includes("Invalid Login")) {
-        strengthDiv.innerText = loginBtn.innerText; // copy text
-        strengthDiv.style.color = "red";
+        strengthDiv.innerText = loginBtn.innerText;
+        strengthDiv.style.color = "#d9534f";
 
         // Reset button text to 'Login' so user can click again
         loginBtn.innerText = "Login";
