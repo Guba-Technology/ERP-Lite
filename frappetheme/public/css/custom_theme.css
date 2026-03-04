@@ -2,9 +2,9 @@
   background: white !important;
 }
 
-.page-content-wrapper {
+/* .page-content-wrapper {
   background: white;
-}
+} */
 
 #page-login {
   background: white;
@@ -44,7 +44,8 @@
 
 
 .navbar {
-  background: #8DC63F !important;
+  /* background: #8DC63F !important; */
+  background: linear-gradient(to right, white 100px, #8DC63F 40px);
   height: 70px;
   border-bottom: none;
   padding: 0;
@@ -52,7 +53,7 @@
 
 .navbar .navbar-brand {
   margin-right: 0;
-  /* margin-left: -12%; */
+  margin-left: 9%;
   color: #8DC63F;
   font-weight: 500;
   display: flex;
@@ -115,7 +116,7 @@
 
 @media (max-width: 1290px) {
   .navbar .navbar-brand {
-    margin-left: -3%;
+    /* margin-left: -3%; */
     width: 30%;
     /* margin-top: 10px; */
   }
@@ -198,7 +199,7 @@ input[type="password"] {
 .for-login-with-email-link .page-card,
 .for-signup .page-card,
 .for-email-login .page-card {
-    margin-left: 700px !important;
+    margin-left: 750px !important;
 }
 .for-login .page-card-head {
   /* width: 25rem; */
@@ -212,7 +213,7 @@ input[type="password"] {
   border-radius: 0px 0px 0px 0px !important;
   border: none !important;
   background-color: white !important;
-  margin-top: 100px !important;
+  margin-top: 40px !important;
   width: 386px !important;
   border: 3px solid rgba(143, 196, 65, 1) !important;
   border-radius: 12px !important;
@@ -583,7 +584,7 @@ input[type=checkbox] {
 }
 
 .toggle-password {
-    font-size: 0 !important;   /* hides Show / Hide text */
+    font-size: 0 !important;   
     cursor: pointer;
 }
 
@@ -593,7 +594,7 @@ input[type=checkbox] {
     stroke: #007DC5;
 }
 /* Press */
-main.container.my-4 {
+#page-update-password {
     margin-top: 0 !important;
     background-image: 
         linear-gradient(rgba(143, 196, 65, 0.47), rgba(143, 196, 65, 0.47)),
@@ -602,17 +603,25 @@ main.container.my-4 {
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
-    height: 700px;
     
 }
-main.container.my-4::before {
+ #page-login {
+    /* min-height: 100vh; */
+    background-image:
+        linear-gradient(rgba(143,196,65,0.47), rgba(143,196,65,0.47)),
+        url('/assets/frappetheme/images/bgimage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#page-login::before {
     content: "lite";
     position: absolute;
-    top: 310px !important;
+    top: 222px !important;
     left: 529px !important;
     font-size: 20px;
     font-weight: bold;
-    color: rgba(255,255,255,0.45); 
+    color: lightgoldenrodyellow; 
     pointer-events: none;
   }
 .navbar .container {
@@ -637,4 +646,51 @@ main.container.my-4::before {
     width: 80%;                     
     margin-left: auto;              
     margin-right: auto;
+}
+/* to change reset page footer */
+.footer-powered {
+    font-size: 0;
+}
+
+.footer-powered::after {
+    content: "Ethio Telecom..";
+    font-size: 14px;
+}
+/* Reset Password / Login Page Logo */
+.navbar-brand {
+    display: block !important;
+    width: 300px !important;       
+    height: 70px !important;       
+    background-image: url("/assets/frappetheme/images/logos.png") !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    text-indent: -9999px !important;  /* hides text */
+    padding: 0 !important;
+    /* background-position: 90px center !important; */
+}
+
+.for-reset-password .page-card form::after {
+    content: "© Copyright 2026 Ethio telecom All Rights Reserved.";
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 10.75px;
+    font-weight: 400;
+    color: rgba(48, 48, 48, 1);
+    border-top: 2px solid rgba(169, 169, 169, 1);
+    padding-top: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#footer-subscribe-button {
+    color: transparent;   /* hide original "Get Updates" text */
+}
+
+#footer-subscribe-button::after {
+    content: "Add more email";
+    color: #000;          
+    font-size: 14px;
+    white-space: nowrap;  
+    margin-left: -80px !important;
 }
