@@ -78,6 +78,7 @@
 }
 .for-login .page-card-head {
     margin-top: 10px !important;
+    display: none;
 }
 /* .help-box {
   color: red !important;
@@ -113,14 +114,14 @@
 
 .navbar .navbar-brand {
   margin-right: 0;
-  margin-left: -12%;
+  /* margin-left: -12%; */
   color: #8DC63F;
   font-weight: 500;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   background-color: #fff;
-  width: 25%;
+  width: 35%;
   border-radius: 0rem 50px 0rem 0rem;
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
@@ -134,7 +135,7 @@
 .navbar-brand img {
   max-height: 60px !important;
   /* new added */
-  /* margin-left: -20%; */
+  margin-left: 90px;
 }
 .for-login .page-card .page-card-body .password-field .toggle-password {
   top: 11px !important;
@@ -177,8 +178,8 @@
 @media (max-width: 1290px) {
   .navbar .navbar-brand {
     margin-left: -3%;
-    width: 25%;
-    margin-top: 10px;
+    width: 30%;
+    /* margin-top: 10px; */
   }
 }
 
@@ -254,7 +255,13 @@ input[type="password"] {
   margin-bottom: 40px;
 }
 
-
+.for-login .page-card,
+.for-forgot .page-card,
+.for-login-with-email-link .page-card,
+.for-signup .page-card,
+.for-email-login .page-card {
+    margin-left: 700px !important;
+}
 .for-login .page-card-head {
   /* width: 25rem; */
   /* padding: max(10vh, 30px) 0 14px 0px; */
@@ -264,9 +271,14 @@ input[type="password"] {
 }
 
 .for-login .page-card {
-  border-radius: 0px 0px 80px 0px !important;
+  border-radius: 0px 0px 0px 0px !important;
   border: none !important;
   background-color: white !important;
+  margin-top: 100px !important;
+  width: 386px !important;
+  border: 3px solid rgba(143, 196, 65, 1) !important;
+  border-radius: 12px !important;
+  margin-left: 800px;
 }
 
 
@@ -619,9 +631,9 @@ input[type=checkbox] {
 /* color: #8DC63F; */
 /* } */
 
-.page-card-actions .btn {
+/* .page-card-actions .btn {
   padding: 16px 8px !important;
-}
+} */
 
 /* .navbar-home img {
   max-width: 300px;
@@ -653,3 +665,48 @@ input[type=checkbox] {
     stroke: #007DC5;
 }
 /* Press */
+main.container.my-4 {
+    margin-top: 0 !important;
+    background-image: 
+        linear-gradient(rgba(143, 196, 65, 0.47), rgba(143, 196, 65, 0.47)),
+        url('/assets/frappetheme/images/bgimage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    height: 700px;
+    
+}
+main.container.my-4::before {
+    content: "lite";
+    position: absolute;
+    top: 310px !important;
+    left: 529px !important;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.45); 
+    pointer-events: none;
+  }
+.navbar .container {
+    margin-left: -90px;
+}
+.for-login .page-card .page-card-actions::after,
+.for-forgot .page-card .page-card-actions::after,
+.for-login-with-email-link .page-card .page-card-actions::after,
+.for-signup .page-card .page-card-actions::after,
+.for-email-login .page-card .page-card-actions::after {
+    content: "© Copyright 2026 Ethio telecom All Rights Reserved."; 
+    display: block;                 
+    text-align: center;             
+    margin-top: 20px;               
+    font-size: 10.75px;                
+    font-weight: 400;               
+    color: rgba(48, 48, 48, 1); 
+    letter-spacing: 0%;              
+    font: Montserrat;
+    border-top: 2px solid rgba(169, 169, 169, 1); 
+    padding-top: 10px;             
+    width: 80%;                     
+    margin-left: auto;              
+    margin-right: auto;
+}
