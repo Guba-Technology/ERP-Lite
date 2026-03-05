@@ -222,7 +222,7 @@ if (passwordField) {
             case 1:
             case 2:
                 text = "Weak";
-                color = "red";
+                color = "#d9534f";
                 break;
             case 3:
             case 4:
@@ -238,6 +238,43 @@ if (passwordField) {
         strengthDiv.innerText = "Password strength: " + text;
         strengthDiv.style.color = color;
     });
+}
+/* ===============================
+   CONFIRM PASSWORD MATCH CHECK
+================================ */
+
+const confirmPasswordField = document.getElementById("confirm_password");
+
+if (passwordField && confirmPasswordField) {
+
+    // Create message div
+    const confirmMsg = document.createElement("div");
+    confirmMsg.id = "confirm-password-message";
+    confirmMsg.style.fontSize = "13px";
+    confirmMsg.style.marginTop = "5px";
+
+    confirmPasswordField.parentElement.appendChild(confirmMsg);
+
+    function checkPasswordMatch() {
+        const pass = passwordField.value;
+        const confirm = confirmPasswordField.value;
+
+        if (!confirm) {
+            confirmMsg.innerText = "";
+            return;
+        }
+
+        if (pass === confirm) {
+            confirmMsg.innerText = "Passwords match";
+            confirmMsg.style.color = "green";
+        } else {
+            confirmMsg.innerText = "Passwords do not match";
+            confirmMsg.style.color = "#d9534f";
+        }
+    }
+
+    passwordField.addEventListener("input", checkPasswordMatch);
+    confirmPasswordField.addEventListener("input", checkPasswordMatch);
 }
 });
 
