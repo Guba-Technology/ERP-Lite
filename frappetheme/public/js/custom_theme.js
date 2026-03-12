@@ -15,19 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     </a>`;
                 pagehome.append(Nav);
             }
-
-            // const section = document.querySelector(".main-section");
-            // if (section && !section.querySelector(".footer-list-main")) {
-            //     const main = document.createElement("div");
-            //     main.className = "footer-list-main";
-            //     main.innerHTML = `
-            //         <div class="footer-list">
-            //             <a href="https://www.ettelerp.com" target="_blank">Ettel ERP</a>
-            //             <a href="https://www.ettelerp.com/privacy-policy" target="_blank">Privacy Policy</a>
-            //             <a href="https://www.ettelerp.com/terms-of-service" target="_blank">Terms of Service</a>
-            //         </div>`;                
-            //     section.append(main);
-            // }
         });
 
         observer.observe(document.body, { childList: true, subtree: true });
@@ -77,14 +64,6 @@ function moveInvalidLoginText() {
 
 // SPA-safe observer
 new MutationObserver(moveInvalidLoginText).observe(document.body, { childList: true, subtree: true });
-    // if (logins && currentPath === "login" && !logins.querySelector(".login-toggle")) {
-    //     const Nav = document.createElement("div");
-    //     Nav.className = "login-toggle";
-    //     Nav.innerHTML = `
-    //         <img src="/assets/frappetheme/images/liner.png" class="login-img-rotated-line"/>
-    //         <img src="/assets/frappetheme/images/linel.png" class="login-img-rotated-line-right"/>`;
-    //     logins.prepend(Nav);
-    // }
 
     const pagehead = document.querySelector(".page-card-head");
     if (pagehead && currentPath === "login" && !pagehead.querySelector(".header-login")) {
@@ -100,21 +79,6 @@ new MutationObserver(moveInvalidLoginText).observe(document.body, { childList: t
     if (loginInput) {
         loginInput.placeholder = "Please Insert Valid Email";
     }
-
-    // if (window.location.pathname === "/login") {
-    //     const navbar = document.querySelector(
-    //         "nav.navbar.navbar-light.navbar-expand-lg"
-    //     )
-    //     const loginnav = document.querySelector(".navbar-expand-lg>.container")
-    //     if (navbar) navbar.remove()
-    //     if (loginnav) loginnav.remove()
-    //     if (loginnav) {
-    //         loginnav.style.display = "none"
-    //     }
-    // }
-
-
-
 
     /* ===============================
        PASSWORD EYE ICON (two SVG toggle)
@@ -144,46 +108,24 @@ new MutationObserver(moveInvalidLoginText).observe(document.body, { childList: t
     // SPA-safe
     new MutationObserver(replaceTextWithIcons)
         .observe(document.body, { childList: true, subtree: true });
-
-    // injectEyeIcons();
-    // new MutationObserver(injectEyeIcons).observe(document.body, { childList: true, subtree: true });
-
-    // Toggle eye icons on click
-    // document.addEventListener("click", function (e) {
-    //     const toggle = e.target.closest(".toggle-password");
-    //     if (!toggle) return;
-
-    //     const input = document.querySelector(toggle.getAttribute("toggle"));
-    //     if (!input) return;
-
-    //     const eyeOn = toggle.querySelector(".eye-on");
-    //     const eyeOff = toggle.querySelector(".eye-off");
-
-    //     if (input.type === "password") {
-    //         input.type = "text";
-    //         eyeOn.style.display = "none";
-    //         eyeOff.style.display = "inline-flex";
-    //     } else {
-    //         input.type = "password";
-    //         eyeOn.style.display = "inline-flex";
-    //         eyeOff.style.display = "none";
-    //     }
-    // });
 /* ===============================
    PREVENT PASSWORD COPY WHEN VISIBLE
 ================================ */
 const passwordField = document.getElementById("login_password");
 
 if (passwordField) {
-    // Block copy/cut/right-click when password is visible
-    passwordField.addEventListener("copy", function(e) {
-        if (passwordField.type === "text") e.preventDefault();
+    // Block copy, cut, paste, drop, and right-click
+    ["copy", "cut", "paste", "drop", "contextmenu"].forEach(event => {
+        passwordField.addEventListener(event, function(e) {
+            e.preventDefault();
+        });
     });
-    passwordField.addEventListener("cut", function(e) {
-        if (passwordField.type === "text") e.preventDefault();
-    });
-    passwordField.addEventListener("contextmenu", function(e) {
-        if (passwordField.type === "text") e.preventDefault();
+
+    // Block Ctrl+V / Cmd+V
+    passwordField.addEventListener("keydown", function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "v") {
+            e.preventDefault();
+        }
     });
 }
 /* ===============================
@@ -276,6 +218,7 @@ if (passwordField && confirmPasswordField) {
     passwordField.addEventListener("input", checkPasswordMatch);
     confirmPasswordField.addEventListener("input", checkPasswordMatch);
 }
+
 });
 
 
