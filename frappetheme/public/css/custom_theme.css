@@ -42,7 +42,7 @@
     height: 16px;
     padding: 4px;
     border-radius: 50%;
-    --icon-stroke: #8FC441 !important;
+    --icon-stroke: #0a66b1 !important;
     box-sizing: content-box;
     color: #8FC441 !important;        /* THIS is important */
 }
@@ -682,14 +682,14 @@ input[type=checkbox] {
     background-image:
         linear-gradient(rgba(143,196,65,0.47), rgba(143,196,65,0.47)),
         url('/assets/frappetheme/images/bgimage.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% 100%;
+    /* background-position: center; */
     background-repeat: no-repeat;
 }
 #page-login::before {
-    content: "lite";
+    content: "Lite";
     position: absolute;
-    top: 222px !important;
+    top: 242px !important;
     left: 529px !important;
     font-size: 20px;
     font-weight: bold;
@@ -755,6 +755,11 @@ input[type=checkbox] {
     margin-left: auto;
     margin-right: auto;
 }
+.for-reset-password {
+    margin: 80px 0;           
+    display: flex !important;            
+    justify-content: flex-end; 
+}
 #footer-subscribe-button {
     color: transparent;   /* hide original "Get Updates" text */
 }
@@ -765,4 +770,7 @@ input[type=checkbox] {
     font-size: 14px;
     white-space: nowrap;  
     margin-left: -80px !important;
+}
+.link-text {
+    text-decoration: none; 
 }
