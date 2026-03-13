@@ -670,14 +670,14 @@ input[type=checkbox] {
     margin-top: 0 !important;
     background-image: 
         linear-gradient(rgba(143, 196, 65, 0.47), rgba(143, 196, 65, 0.47)),
-        url('/assets/frappetheme/images/bgimage.png');
+        url('/assets/frappetheme/images/ooo.png');
     background-size: 100% 100%;
     /* background-position: center; */
     background-repeat: no-repeat;
     min-height: 100vh;
     
 }
-#page-update-password::before {
+/* #page-update-password::before {
     content: "Lite";
     position: absolute;
     top: 268px !important;
@@ -686,7 +686,7 @@ input[type=checkbox] {
     font-weight: bold;
     color: lightgoldenrodyellow; 
     pointer-events: none;
-  }
+  } */
 .for-reset-password .page-card {
     margin-right: 0px !important;
 }
@@ -695,15 +695,15 @@ input[type=checkbox] {
     /* min-height: 100vh; */
     background-image:
         linear-gradient(rgba(143,196,65,0.47), rgba(143,196,65,0.47)),
-        url('/assets/frappetheme/images/bgimage.png');
+        url('/assets/frappetheme/images/ooo.png');
     background-size: 100% 100%;
     /* background-position: center; */
     background-repeat: no-repeat;
     display: flex;
-    justify-content: flex-end;   /* move card to right */
+    justify-content: flex-end;
     align-items: center;
 }
-#page-login::before {
+/* #page-login::before {
     content: "Lite";
     position: absolute;
     top: 242px !important;
@@ -712,7 +712,7 @@ input[type=checkbox] {
     font-weight: bold;
     color: lightgoldenrodyellow; 
     pointer-events: none;
-  }
+  } */
 .navbar .container {
     margin-left: -90px;
 }
