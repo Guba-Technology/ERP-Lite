@@ -32,7 +32,34 @@ changePreparedReportText();
 // SPA-safe observer
 new MutationObserver(changePreparedReportText)
     .observe(document.body, { childList: true, subtree: true });
-    
+  /* ===============================
+   REPLACE "NO CHANGES" ALERT WHEN SAVE AFTER SAVE WITH MSGPRINT
+================================ */
+let noChangeMsgShown = false;
+function replaceNoChangeAlert() {
+    document.querySelectorAll(".alert.desk-alert").forEach(alert => {
+        const msg = alert.querySelector(".alert-message");
+        if (msg && msg.innerText.trim() === "No changes in document") {
+            alert.remove();
+            if (!noChangeMsgShown) {
+                noChangeMsgShown = true;
+                frappe.msgprint({
+                    title: "Notice",
+                    message: "No changes detected in this document.",
+                    indicator: "orange"
+                });
+                setTimeout(() => {
+                    noChangeMsgShown = false;
+                }, 1500);
+            }
+        }
+
+    });
+
+}
+replaceNoChangeAlert();
+new MutationObserver(replaceNoChangeAlert)
+    .observe(document.body, { childList: true, subtree: true });
       /* ===============================
    Remove button after reset email sent
 ================================ */
