@@ -1,4 +1,56 @@
 document.addEventListener("DOMContentLoaded", function () {
+    function changePasswordMessage() {
+        const msg = document.querySelector(".password-strength-message");
+    if (!msg) return;
+
+    if (msg.innerText.trim() === "Success! You are good to go 👍") {
+        msg.innerText = "Success! You used a strong password";
+    }
+    }
+
+    // run once
+    changePasswordMessage();
+
+    // observe changes (Frappe updates dynamically)
+    new MutationObserver(changePasswordMessage)
+        .observe(document.body, { childList: true, subtree: true });
+
+        /* ===============================
+   CHANGE PREPARED REPORT ALERT TEXT
+================================ */
+function changePreparedReportText() {
+    document.querySelectorAll('a[href*="/app/prepared-report/"]').forEach(link => {
+        if (link.innerText.includes("Report initiated")) {
+            link.innerText = "Your report is running! Click to track it.";
+        }
+    });
+}
+
+// Run initially
+changePreparedReportText();
+
+// SPA-safe observer
+new MutationObserver(changePreparedReportText)
+    .observe(document.body, { childList: true, subtree: true });
+    
+      /* ===============================
+   Remove button after reset email sent
+================================ */
+function removeForgotButton() {
+    const btn = document.querySelector(".btn-forgot");
+    if (!btn) return;
+
+    if (btn.innerText.trim() === "Instructions Emailed") {
+        btn.remove();   // completely remove button
+    }
+}
+
+// run once
+removeForgotButton();
+
+// observe dynamic changes (Frappe SPA)
+new MutationObserver(removeForgotButton)
+    .observe(document.body, { childList: true, subtree: true });
     /* ===============================
        MUTATION OBSERVER (Navbar / Footer)
     ================================ */
@@ -49,15 +101,22 @@ new MutationObserver(changeUploadText)
 ================================ */
 function moveInvalidLoginText() {
     const loginBtn = document.querySelector(".btn-login");
-    const strengthDiv = document.getElementById("password-strength");
-    if (!loginBtn || !strengthDiv) return;
+    const messageBox = document.getElementById("password-strength");
 
-    // If button contains 'Invalid Login'
-    if (loginBtn.innerText.includes("Invalid Login")) {
-        strengthDiv.innerText = loginBtn.innerText;
-        strengthDiv.style.color = "#d9534f";
+    if (!loginBtn || !messageBox) return;
 
-        // Reset button text to 'Login' so user can click again
+    const btnText = loginBtn.innerText.trim();
+
+    // Detect built-in error message
+    if (btnText.includes("Invalid Login")) {
+
+        // Replace with custom professional message
+        messageBox.innerText = "Incorrect username or password.";
+
+        // Apply styling class
+        messageBox.classList.add("custom-login-error");
+
+        // Restore button text
         loginBtn.innerText = "Login";
     }
 }
@@ -163,21 +222,21 @@ if (passwordField) {
             case 0:
             case 1:
             case 2:
-                text = "Weak";
+                text = "weak";
                 color = "#d9534f";
                 break;
             case 3:
             case 4:
-                text = "Medium";
+                text = "medium";
                 color = "orange";
                 break;
             case 5:
-                text = "Strong";
+                text = "strong";
                 color = "green";
                 break;
         }
 
-        strengthDiv.innerText = "Password strength: " + text;
+        strengthDiv.innerText = "Your password strength is " + text;
         strengthDiv.style.color = color;
     });
 }
