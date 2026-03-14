@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!msg) return;
 
     if (msg.innerText.trim() === "Success! You are good to go 👍") {
-        msg.innerText = "Success! You used a strong password";
+        msg.innerText = "Success! You can now continue.";
     }
     }
 
