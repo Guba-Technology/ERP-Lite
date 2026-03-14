@@ -721,7 +721,7 @@ input[type=checkbox] {
 .for-login-with-email-link .page-card .page-card-actions::after,
 .for-signup .page-card .page-card-actions::after,
 .for-email-login .page-card .page-card-actions::after {
-    content: "© Copyright 2026 Ethio telecom All Rights Reserved."; 
+    content: "© Copyright 2026 Ethio telecom All Rights Reserved."; 
     display: block;                 
     text-align: center;             
     margin-top: 20px;               
@@ -729,7 +729,7 @@ input[type=checkbox] {
     font-weight: 400;               
     color: rgba(48, 48, 48, 1); 
     letter-spacing: 0%;              
-    font: Montserrat;
+    font: "Montserrat";
     border-top: 2px solid rgba(169, 169, 169, 1); 
     padding-top: 10px;             
     width: 80%;                     
@@ -813,5 +813,8 @@ input[type=checkbox] {
     font-size: 14px;
     font-weight: 500;
     margin-top: 6px;
-    font: Montserrat;
+    font: "Montserrat";
+}
+.navbar .navbar-nav .nav-item .nav-link {
+    color: white;
 }

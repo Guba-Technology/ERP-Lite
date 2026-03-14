@@ -217,8 +217,6 @@ if (passwordField) {
 /* ===============================
    PASSWORD STRENGTH METER
 ================================ */
-// const passwordField = document.getElementById("login_password");
-
 if (passwordField) {
     // Create strength div
     const strengthDiv = document.createElement("div");
@@ -303,6 +301,60 @@ if (passwordField && confirmPasswordField) {
 
     passwordField.addEventListener("input", checkPasswordMatch);
     confirmPasswordField.addEventListener("input", checkPasswordMatch);
+}
+
+/* ===============================
+   PASSWORD STRENGTH METER for reset page
+================================ */
+const passwordreset = document.getElementById("new_password");
+
+if (passwordreset) {
+
+    // create strength indicator
+    const strengthDiv = document.createElement("div");
+    strengthDiv.id = "password-strength";
+    strengthDiv.style.fontSize = "13px";
+    strengthDiv.style.marginTop = "5px";
+
+    passwordreset.parentElement.appendChild(strengthDiv);
+
+    passwordreset.addEventListener("input", function () {
+
+        const val = passwordreset.value;
+
+        if (!val) {
+            strengthDiv.innerText = "";
+            return;
+        }
+
+        let strength = 0;
+
+        if (val.length >= 8) strength++;
+        if (/[A-Z]/.test(val)) strength++;
+        if (/[a-z]/.test(val)) strength++;
+        if (/[0-9]/.test(val)) strength++;
+        if (/[\W]/.test(val)) strength++;
+
+        let text = "";
+        let color = "";
+
+        if (strength <= 2) {
+            text = "weak";
+            color = "#d9534f";
+        } 
+        else if (strength <= 4) {
+            text = "medium";
+            color = "orange";
+        } 
+        else {
+            text = "strong";
+            color = "green";
+        }
+
+        strengthDiv.innerText = "Your password strength is " + text;
+        strengthDiv.style.color = color;
+
+    });
 }
 
 });
