@@ -256,13 +256,13 @@ input[type="password"] {
   margin-bottom: 40px;
 }
 
-.for-login .page-card,
+/* .for-login .page-card,
 .for-forgot .page-card,
 .for-login-with-email-link .page-card,
 .for-signup .page-card,
 .for-email-login .page-card {
     margin-left: 750px !important;
-}
+} */
 .for-login .page-card-head {
   /* width: 25rem; */
   /* padding: max(10vh, 30px) 0 14px 0px; */
@@ -279,7 +279,7 @@ input[type="password"] {
   width: 386px !important;
   border: 3px solid rgba(143, 196, 65, 1) !important;
   border-radius: 12px !important;
-  margin-left: 800px;
+  /* margin-left: 800px; */
 }
 
 
@@ -451,7 +451,7 @@ input[type="password"] {
 }
 
 .shortcut-widget-box .widget-head .widget-control>* {
-  color: #0072BC;
+  /* color: #0072BC; */
   --icon-stroke: #0072BC;
 }
 
@@ -670,23 +670,40 @@ input[type=checkbox] {
     margin-top: 0 !important;
     background-image: 
         linear-gradient(rgba(143, 196, 65, 0.47), rgba(143, 196, 65, 0.47)),
-        url('/assets/frappetheme/images/bgimage.png');
-    background-size: cover;
-    background-position: center;
+        url('/assets/frappetheme/images/ooo.png');
+    background-size: 100% 100%;
+    /* background-position: center; */
     background-repeat: no-repeat;
     min-height: 100vh;
     
 }
+/* #page-update-password::before {
+    content: "Lite";
+    position: absolute;
+    top: 268px !important;
+    left: 524px !important;
+    font-size: 20px;
+    font-weight: bold;
+    color: lightgoldenrodyellow; 
+    pointer-events: none;
+  } */
+.for-reset-password .page-card {
+    margin-right: 0px !important;
+}
+
  #page-login {
     /* min-height: 100vh; */
     background-image:
         linear-gradient(rgba(143,196,65,0.47), rgba(143,196,65,0.47)),
-        url('/assets/frappetheme/images/bgimage.png');
+        url('/assets/frappetheme/images/ooo.png');
     background-size: 100% 100%;
     /* background-position: center; */
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
-#page-login::before {
+/* #page-login::before {
     content: "Lite";
     position: absolute;
     top: 242px !important;
@@ -695,7 +712,7 @@ input[type=checkbox] {
     font-weight: bold;
     color: lightgoldenrodyellow; 
     pointer-events: none;
-  }
+  } */
 .navbar .container {
     margin-left: -90px;
 }
@@ -704,7 +721,7 @@ input[type=checkbox] {
 .for-login-with-email-link .page-card .page-card-actions::after,
 .for-signup .page-card .page-card-actions::after,
 .for-email-login .page-card .page-card-actions::after {
-    content: "© Copyright 2026 Ethio telecom All Rights Reserved."; 
+    content: "© Copyright 2026 Ethio telecom All Rights Reserved."; 
     display: block;                 
     text-align: center;             
     margin-top: 20px;               
@@ -712,7 +729,7 @@ input[type=checkbox] {
     font-weight: 400;               
     color: rgba(48, 48, 48, 1); 
     letter-spacing: 0%;              
-    font: Montserrat;
+    font: "Montserrat";
     border-top: 2px solid rgba(169, 169, 169, 1); 
     padding-top: 10px;             
     width: 80%;                     
@@ -773,4 +790,31 @@ input[type=checkbox] {
 }
 .link-text {
     text-decoration: none; 
+}
+/* Remove focus/active border from login button */
+.btn-login:focus,
+.btn-login:active,
+.btn-login:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+.btn-login.btn-loading {
+    outline: none !important;
+    box-shadow: none !important;
+}
+.btn-primary:focus,
+.btn-primary:active {
+    box-shadow: none !important;
+    outline: none !important;
+}
+.custom-login-error {
+    color: #dc3545;       /* professional error red */
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 6px;
+    font: "Montserrat";
+}
+.navbar .navbar-nav .nav-item .nav-link {
+    color: white;
 }

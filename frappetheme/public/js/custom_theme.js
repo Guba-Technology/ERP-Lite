@@ -1,4 +1,83 @@
 document.addEventListener("DOMContentLoaded", function () {
+    function changePasswordMessage() {
+        const msg = document.querySelector(".password-strength-message");
+    if (!msg) return;
+
+    if (msg.innerText.trim() === "Success! You are good to go 👍") {
+        msg.innerText = "Success! You can now continue.";
+    }
+    }
+
+    // run once
+    changePasswordMessage();
+
+    // observe changes (Frappe updates dynamically)
+    new MutationObserver(changePasswordMessage)
+        .observe(document.body, { childList: true, subtree: true });
+
+        /* ===============================
+   CHANGE PREPARED REPORT ALERT TEXT
+================================ */
+function changePreparedReportText() {
+    document.querySelectorAll('a[href*="/app/prepared-report/"]').forEach(link => {
+        if (link.innerText.includes("Report initiated")) {
+            link.innerText = "Your report is running! Click to track it.";
+        }
+    });
+}
+
+// Run initially
+changePreparedReportText();
+
+// SPA-safe observer
+new MutationObserver(changePreparedReportText)
+    .observe(document.body, { childList: true, subtree: true });
+  /* ===============================
+   REPLACE "NO CHANGES" ALERT WHEN SAVE AFTER SAVE WITH MSGPRINT
+================================ */
+let noChangeMsgShown = false;
+function replaceNoChangeAlert() {
+    document.querySelectorAll(".alert.desk-alert").forEach(alert => {
+        const msg = alert.querySelector(".alert-message");
+        if (msg && msg.innerText.trim() === "No changes in document") {
+            alert.remove();
+            if (!noChangeMsgShown) {
+                noChangeMsgShown = true;
+                frappe.msgprint({
+                    title: "Notice",
+                    message: "No changes detected in this document.",
+                    indicator: "orange"
+                });
+                setTimeout(() => {
+                    noChangeMsgShown = false;
+                }, 1500);
+            }
+        }
+
+    });
+
+}
+replaceNoChangeAlert();
+new MutationObserver(replaceNoChangeAlert)
+    .observe(document.body, { childList: true, subtree: true });
+      /* ===============================
+   Remove button after reset email sent
+================================ */
+function removeForgotButton() {
+    const btn = document.querySelector(".btn-forgot");
+    if (!btn) return;
+
+    if (btn.innerText.trim() === "Instructions Emailed") {
+        btn.remove();   // completely remove button
+    }
+}
+
+// run once
+removeForgotButton();
+
+// observe dynamic changes (Frappe SPA)
+new MutationObserver(removeForgotButton)
+    .observe(document.body, { childList: true, subtree: true });
     /* ===============================
        MUTATION OBSERVER (Navbar / Footer)
     ================================ */
@@ -49,15 +128,22 @@ new MutationObserver(changeUploadText)
 ================================ */
 function moveInvalidLoginText() {
     const loginBtn = document.querySelector(".btn-login");
-    const strengthDiv = document.getElementById("password-strength");
-    if (!loginBtn || !strengthDiv) return;
+    const messageBox = document.getElementById("password-strength");
 
-    // If button contains 'Invalid Login'
-    if (loginBtn.innerText.includes("Invalid Login")) {
-        strengthDiv.innerText = loginBtn.innerText;
-        strengthDiv.style.color = "#d9534f";
+    if (!loginBtn || !messageBox) return;
 
-        // Reset button text to 'Login' so user can click again
+    const btnText = loginBtn.innerText.trim();
+
+    // Detect built-in error message
+    if (btnText.includes("Invalid Login")) {
+
+        // Replace with custom professional message
+        messageBox.innerText = "Incorrect username or password.";
+
+        // Apply styling class
+        messageBox.classList.add("custom-login-error");
+
+        // Restore button text
         loginBtn.innerText = "Login";
     }
 }
@@ -131,8 +217,6 @@ if (passwordField) {
 /* ===============================
    PASSWORD STRENGTH METER
 ================================ */
-// const passwordField = document.getElementById("login_password");
-
 if (passwordField) {
     // Create strength div
     const strengthDiv = document.createElement("div");
@@ -163,21 +247,21 @@ if (passwordField) {
             case 0:
             case 1:
             case 2:
-                text = "Weak";
+                text = "weak";
                 color = "#d9534f";
                 break;
             case 3:
             case 4:
-                text = "Medium";
+                text = "medium";
                 color = "orange";
                 break;
             case 5:
-                text = "Strong";
+                text = "strong";
                 color = "green";
                 break;
         }
 
-        strengthDiv.innerText = "Password strength: " + text;
+        strengthDiv.innerText = "Your password strength is " + text;
         strengthDiv.style.color = color;
     });
 }
@@ -217,6 +301,60 @@ if (passwordField && confirmPasswordField) {
 
     passwordField.addEventListener("input", checkPasswordMatch);
     confirmPasswordField.addEventListener("input", checkPasswordMatch);
+}
+
+/* ===============================
+   PASSWORD STRENGTH METER for reset page
+================================ */
+const passwordreset = document.getElementById("new_password");
+
+if (passwordreset) {
+
+    // create strength indicator
+    const strengthDiv = document.createElement("div");
+    strengthDiv.id = "password-strength";
+    strengthDiv.style.fontSize = "13px";
+    strengthDiv.style.marginTop = "5px";
+
+    passwordreset.parentElement.appendChild(strengthDiv);
+
+    passwordreset.addEventListener("input", function () {
+
+        const val = passwordreset.value;
+
+        if (!val) {
+            strengthDiv.innerText = "";
+            return;
+        }
+
+        let strength = 0;
+
+        if (val.length >= 8) strength++;
+        if (/[A-Z]/.test(val)) strength++;
+        if (/[a-z]/.test(val)) strength++;
+        if (/[0-9]/.test(val)) strength++;
+        if (/[\W]/.test(val)) strength++;
+
+        let text = "";
+        let color = "";
+
+        if (strength <= 2) {
+            text = "weak";
+            color = "#d9534f";
+        } 
+        else if (strength <= 4) {
+            text = "medium";
+            color = "orange";
+        } 
+        else {
+            text = "strong";
+            color = "green";
+        }
+
+        strengthDiv.innerText = "Your password strength is " + text;
+        strengthDiv.style.color = color;
+
+    });
 }
 
 });
