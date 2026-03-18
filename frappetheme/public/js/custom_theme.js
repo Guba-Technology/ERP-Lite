@@ -15,6 +15,23 @@ document.addEventListener("DOMContentLoaded", function () {
     new MutationObserver(changePasswordMessage)
         .observe(document.body, { childList: true, subtree: true });
 
+        /* ===============================
+   CHANGE PREPARED REPORT ALERT TEXT
+================================ */
+// function changePreparedReportText() {
+//     document.querySelectorAll('a[href*="/app/prepared-report/"]').forEach(link => {
+//         if (link.innerText.includes("Report initiated")) {
+//             link.innerText = "Your report is running! Click to track it.";
+//         }
+//     });
+// }
+
+// // Run initially
+// changePreparedReportText();
+
+// // SPA-safe observer
+// new MutationObserver(changePreparedReportText)
+//     .observe(document.body, { childList: true, subtree: true });
 /* ===============================
    Replace "Prepared Report" alerts with clickable msgprint
 ================================ */
