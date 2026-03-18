@@ -18,20 +18,60 @@ document.addEventListener("DOMContentLoaded", function () {
         /* ===============================
    CHANGE PREPARED REPORT ALERT TEXT
 ================================ */
-function changePreparedReportText() {
-    document.querySelectorAll('a[href*="/app/prepared-report/"]').forEach(link => {
-        if (link.innerText.includes("Report initiated")) {
-            link.innerText = "Your report is running! Click to track it.";
+// function changePreparedReportText() {
+//     document.querySelectorAll('a[href*="/app/prepared-report/"]').forEach(link => {
+//         if (link.innerText.includes("Report initiated")) {
+//             link.innerText = "Your report is running! Click to track it.";
+//         }
+//     });
+// }
+
+// // Run initially
+// changePreparedReportText();
+
+// // SPA-safe observer
+// new MutationObserver(changePreparedReportText)
+//     .observe(document.body, { childList: true, subtree: true });
+/* ===============================
+   Replace "Prepared Report" alerts with clickable msgprint
+================================ */
+let reportMsgShown = false;
+
+function replacePreparedReportAlert() {
+    document.querySelectorAll('#alert-container .alert').forEach(alert => {
+        const msg = alert.querySelector('.alert-message');
+        const link = alert.querySelector('a'); // get the built-in link
+        if (msg && msg.innerText.includes("Report initiated") && !reportMsgShown) {
+            // Remove the original alert
+            alert.remove();
+            if (link) {
+                const url = link.href;
+                const linkText = link.innerText || "Track Report";
+                frappe.msgprint({
+                    title: "Report Status",
+                    message: `Your report is running! <a href="${url}" target="_blank">${linkText}</a>`,
+                    indicator: "blue"
+                });
+            } else {
+                // fallback if link not found
+                frappe.msgprint({
+                    title: "Report Status",
+                    message: "Your report is running! Click to track it.",
+                    indicator: "blue"
+                });
+            }
+
+            reportMsgShown = true;
+            setTimeout(() => {
+                reportMsgShown = false;
+            }, 2000);
         }
     });
 }
-
-// Run initially
-changePreparedReportText();
-
-// SPA-safe observer
-new MutationObserver(changePreparedReportText)
-    .observe(document.body, { childList: true, subtree: true });
+replacePreparedReportAlert();
+new MutationObserver(() => {
+    replacePreparedReportAlert();
+}).observe(document.body, { childList: true, subtree: true });
   /* ===============================
    REPLACE "NO CHANGES" ALERT WHEN SAVE AFTER SAVE WITH MSGPRINT
 ================================ */

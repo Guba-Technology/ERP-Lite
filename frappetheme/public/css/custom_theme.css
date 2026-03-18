@@ -544,6 +544,7 @@ input[type=checkbox] {
 
 .widget.onboarding-widget-box {
   border-radius: 10px !important;
+  display: none !important;
 }
 
 .for-login .page-card .page-card-body .email-field input {
