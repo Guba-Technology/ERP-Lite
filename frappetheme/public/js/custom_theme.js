@@ -15,45 +15,40 @@ document.addEventListener("DOMContentLoaded", function () {
     new MutationObserver(changePasswordMessage)
         .observe(document.body, { childList: true, subtree: true });
 
-        /* ===============================
-   CHANGE PREPARED REPORT ALERT TEXT
-================================ */
-// function changePreparedReportText() {
-//     document.querySelectorAll('a[href*="/app/prepared-report/"]').forEach(link => {
-//         if (link.innerText.includes("Report initiated")) {
-//             link.innerText = "Your report is running! Click to track it.";
-//         }
-//     });
-// }
-
-// // Run initially
-// changePreparedReportText();
-
-// // SPA-safe observer
-// new MutationObserver(changePreparedReportText)
-//     .observe(document.body, { childList: true, subtree: true });
 /* ===============================
    Replace "Prepared Report" alerts with clickable msgprint
 ================================ */
 let reportMsgShown = false;
+let isGeneratingNewReport = false;
+// Detect when "Generate New Report" is clicked
+$(document).on('click', 'button:contains("Generate New Report")', function() {
+    isGeneratingNewReport = true;
+        setTimeout(() => {
+        isGeneratingNewReport = false;
+    }, 3000);
+});
 
 function replacePreparedReportAlert() {
     document.querySelectorAll('#alert-container .alert').forEach(alert => {
         const msg = alert.querySelector('.alert-message');
-        const link = alert.querySelector('a'); // get the built-in link
+        const link = alert.querySelector('a');
+        
         if (msg && msg.innerText.includes("Report initiated") && !reportMsgShown) {
-            // Remove the original alert
+                        if (isGeneratingNewReport) {
+                alert.remove();
+                return;
+            }
+            
             alert.remove();
+            
             if (link) {
                 const url = link.href;
                 const linkText = link.innerText || "Track Report";
                 frappe.msgprint({
                     title: "Report Status",
-                    message: `Your report is running! <a href="${url}" target="_blank">${linkText}</a>`,
-                    indicator: "blue"
+                    message: `<div style="cursor: pointer; text-decoration: underline;" onclick="window.location.href='${url}'">${linkText}</div>`,                    indicator: "blue"
                 });
             } else {
-                // fallback if link not found
                 frappe.msgprint({
                     title: "Report Status",
                     message: "Your report is running! Click to track it.",
@@ -62,15 +57,19 @@ function replacePreparedReportAlert() {
             }
 
             reportMsgShown = true;
-            setTimeout(() => {
+                        setTimeout(() => {
                 reportMsgShown = false;
-            }, 2000);
+            }, 5000);
         }
     });
 }
 replacePreparedReportAlert();
+let timeout;
 new MutationObserver(() => {
-    replacePreparedReportAlert();
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+        replacePreparedReportAlert();
+    }, 100);
 }).observe(document.body, { childList: true, subtree: true });
   /* ===============================
    REPLACE "NO CHANGES" ALERT WHEN SAVE AFTER SAVE WITH MSGPRINT
