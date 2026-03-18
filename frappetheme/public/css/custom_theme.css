@@ -78,7 +78,7 @@
 }
 .for-login .page-card-head {
     margin-top: 10px !important;
-    display: none;
+    /* display: none; */
 }
 /* .help-box {
   color: red !important;
@@ -254,8 +254,12 @@ input[type="password"] {
   max-height: 200px !important;
   width: 200px !important;
   margin-bottom: 40px;
+  display: none;
 }
-
+.page-card-head {
+    padding: 0px !important;
+   
+}
 /* .for-login .page-card,
 .for-forgot .page-card,
 .for-login-with-email-link .page-card,
@@ -275,8 +279,8 @@ input[type="password"] {
   border-radius: 0px 0px 0px 0px !important;
   border: none !important;
   background-color: white !important;
-  margin-top: 40px !important;
-  width: 386px !important;
+  margin-top: 10px !important;
+  width: 340px !important;
   border: 3px solid rgba(143, 196, 65, 1) !important;
   border-radius: 12px !important;
   /* margin-left: 800px; */
@@ -291,8 +295,10 @@ input[type="password"] {
   border-left: 5px solid #8DC63F;
 }
 
-
-
+.page-content-wrapper {
+  min-height: calc(100vh - 150px) !important;
+    max-height: calc(100vh - 20px) !important;
+}
 
 .widget.dashboard-widget-box {
   border: 1px solid #034F46;
@@ -622,11 +628,13 @@ input[type=checkbox] {
   display: none !important;
 }
 
+
 .header-login {
   font-size: var(--text-xl);
   font-weight: var(--weight-semibold);
   letter-spacing: .01em;
-  color: var(--text-color);
+  color: #ffffff;
+  font-family: sans-serif;
 }
 
 /* .title-logins { */
@@ -689,7 +697,8 @@ input[type=checkbox] {
     pointer-events: none;
   } */
 .for-reset-password .page-card {
-    margin-right: 0px !important;
+    margin-right: -6px !important;
+    max-width: 350px !important;
 }
 
  #page-login {
@@ -736,6 +745,10 @@ input[type=checkbox] {
     width: 80%;                     
     margin-left: auto;              
     margin-right: auto;
+}
+.for-forgot{
+    width: 340px;
+    margin-top: 40px
 }
 /* to change reset page footer */
 .footer-powered {
