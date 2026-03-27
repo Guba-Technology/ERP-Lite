@@ -195,8 +195,7 @@ new MutationObserver(moveInvalidLoginText).observe(document.body, { childList: t
         const Nav = document.createElement("div");
         Nav.className = "header-login";
         Nav.innerHTML = `
-            <span>Welcome To </span>
-            <span class="title-logins">Tele ERP Lite</span>`;
+            <span class="title-logins">Fertilizer Distribution System</span>`;
         pagehead.append(Nav);
     }
 
