@@ -1,6 +1,6 @@
 .navbar {
   /* border-radius: 10px; */
-  background: #0D9488 !important;
+  background: #C0392B !important;
   height: 70px;
   border-bottom: none;
   /* box-shadow: 10px 10px 10px lightgrey; */
@@ -21,7 +21,7 @@
 
 .guba-sidebar {
   width: 16.2rem;
-  background-color: #0D9488;
+  background-color: #F8D7DC;
   padding: 0;
   margin: 0;
   height: 100%;
@@ -58,13 +58,13 @@
 }
 
 .links-widget-box {
-  background-color: #0D9488;
+  background-color: #FFFFFF;
   color: black;
   transition: all 1s ease-in-out;
   padding: 10px;
   /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
   position: relative;
-  /* border: 1px solid #e5e7eb; */
+  border: 2px solid #E2E4E8;
   overflow: hidden;
   z-index: 1;
 }
@@ -86,7 +86,7 @@
 }
 
 .links-widget-box:hover {
-  background-color: #0D9488;
+  background-color: #B01030;
   color: white;
 }
 
@@ -264,10 +264,10 @@ input[type="password"] {
 }
 
 .sidebar-item-label {
-  color: white;
+  color: #1A1A2E;
   /* font-family: serif; */
   font-size: 16px;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 .sidebar-item-label .selected {
@@ -288,7 +288,8 @@ input[type="password"] {
 }
 
 .standard-sidebar-item:hover {
-  background-color: #F3F3F380 !important;
+  background-color: #B01030 !important;
+  color: white;
 }
 
 @media (max-width: 1285px) {
@@ -356,11 +357,11 @@ input[type="password"] {
 
 
 #navbar-breadcrumbs a {
-  /* color: white !important; */
+  color: white !important;
 }
 
 .sidebar-item-icon .icon {
-  --icon-stroke: white;
+  --icon-stroke: #1A1A2E;
 }
 
 .page_content {
@@ -397,7 +398,7 @@ input[type="password"] {
 }
 
 .btn.btn-primary {
-  background-color: #D6C726;
+  background-color: #C0392B;
 }
 
 .btn.btn-secondary {
@@ -461,7 +462,7 @@ input[type="password"] {
 .widget.shortcut-widget-box {
   /* height: 90px; */
   padding: 15px 15px !important;
-  background: #0D9488;
+  background: #FFFFFF;
 }
 
 /* .page-card-head h4 {
@@ -518,8 +519,8 @@ input[type="password"] {
 }
 
 .link-text {
-  color: white;
-  text-decoration: underline;
+  /* color: white; */
+  text-decoration: none;
   text-underline-offset: 3px;
   text-decoration-color: #1BB2B1;
 }
@@ -530,13 +531,13 @@ input[type="password"] {
 
 
 .widget.links-widget-box .widget-head .widget-label .widget-title {
-  color: #1BB2B1 !important;
-  font-size: var(--text-base) !important;
-  font-weight: var(--weight-medium) !important;
+  color: #1A1A2E !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
 }
 
 .shortcut-widget-box .widget-head .widget-label .widget-title {
-  color: white;
+  /* color: white; */
 }
 
 .widget .widget-head .widget-label .widget-title:hamover {
@@ -577,7 +578,7 @@ input[type=checkbox] {
 }
 
 .btn.btn-primary {
-  background-color: #1BB2B1;
+  background-color: #C0392B;
 }
 
 .widget.onboarding-widget-box {
